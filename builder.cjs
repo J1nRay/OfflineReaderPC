@@ -7,7 +7,7 @@ const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json'), 'ut
 const Platform = builder.Platform;
 
 const args = process.argv.slice(2);
-const isWin32 = args.includes('--win32');
+const isWin32 = args.some(a => a.startsWith('--win32'));
 const archArg = args.find(a => a.startsWith('--win32='));
 const arch = archArg ? archArg.split('=')[1] : 'x64';
 
