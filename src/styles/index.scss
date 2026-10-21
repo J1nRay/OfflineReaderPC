@@ -1,0 +1,226 @@
+/* 全局样式与主题变量（轻量自研，不依赖任何 UI 库） */
+:root {
+  --rc-bg: #f2f6fc;
+  --rc-panel: #ffffff;
+  --rc-panel-2: #f6f8fb;
+  --rc-text: #303133;
+  --rc-text-secondary: #909399;
+  --rc-border: #e4e7ed;
+  --rc-hover: #eef2f8;
+  --rc-primary: #1e78eb;
+  --rc-danger: #e5533d;
+  --rc-success: #67c23a;
+  --rc-warning: #e6a23c;
+  --rc-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  --rc-radius: 8px;
+  --rc-theme-color: var(--rc-primary);
+  --rc-header-color: #ffffff;
+  --rc-title-bar-height: 46px;
+}
+
+html.dark {
+  --rc-bg: #16171b;
+  --rc-panel: #1f2127;
+  --rc-panel-2: #262932;
+  --rc-text: #e6e8ec;
+  --rc-text-secondary: #868b96;
+  --rc-border: #32353d;
+  --rc-hover: #2b2e37;
+  --rc-header-color: #1f2127;
+  --rc-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  color: var(--rc-text);
+  background-color: var(--rc-bg);
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+input,
+textarea,
+select,
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
+}
+
+button {
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+/* 应用布局 */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#main {
+  position: relative;
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* 滚动条 */
+.rc-scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(144, 147, 153, 0.5);
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(144, 147, 153, 0.8);
+  }
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+}
+
+#main::-webkit-scrollbar {
+  width: 10px;
+}
+#main::-webkit-scrollbar-thumb {
+  border-radius: 5px;
+  background-color: rgba(144, 147, 153, 0.45);
+}
+#main::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(144, 147, 153, 0.75);
+}
+
+/* 拖拽区域 */
+.rc-drag-region {
+  -webkit-app-region: drag;
+}
+.rc-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* 过渡 */
+.rc-fade-enter-active,
+.rc-fade-leave-active {
+  transition: opacity 0.2s ease;
+}
+.rc-fade-enter-from,
+.rc-fade-leave-to {
+  opacity: 0;
+}
+
+/* 通用小工具类 */
+.rc-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.rc-flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 表单控件 */
+.rc-input,
+.rc-select-control {
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid var(--rc-border);
+  border-radius: 6px;
+  background-color: var(--rc-panel);
+  color: var(--rc-text);
+  user-select: text;
+  transition: border-color 0.2s ease;
+}
+.rc-input:focus,
+.rc-select-control:focus {
+  border-color: var(--rc-primary);
+}
+.rc-input::placeholder {
+  color: var(--rc-text-secondary);
+}
+.rc-select-control {
+  cursor: pointer;
+}
+.rc-label {
+  flex-shrink: 0;
+  font-size: 13px;
+  color: var(--rc-text-secondary);
+}
+.rc-field-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rc-card {
+  border: 1px solid var(--rc-border);
+  border-radius: var(--rc-radius);
+  background-color: var(--rc-panel);
+}
+
+/* 页面通用头部 */
+.rc-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 28px 14px;
+  flex-wrap: wrap;
+}
+.rc-page-title {
+  font-size: 19px;
+  font-weight: 600;
+}
+.rc-page-subtitle {
+  margin-left: 10px;
+  font-size: 13px;
+  color: var(--rc-text-secondary);
+}
+.rc-page-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rc-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 90px 20px;
+  color: var(--rc-text-secondary);
+  text-align: center;
+}
+.rc-empty-tip {
+  font-size: 13px;
+}
+
